@@ -15,7 +15,7 @@
 {
     
 	int mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0};
-	size_t miblen = 4;
+	u_int miblen = 4;
 	
 	size_t size;
 	int st = sysctl(mib, miblen, NULL, &size, NULL, 0);
