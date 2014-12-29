@@ -20,7 +20,7 @@
     [super viewDidLoad];
     
     NSArray *processes = [[UIDevice currentDevice] runningProcesses];
-    NSLog(@"");
+    NSLog(@"%@", processes);
 }
 
 - (void)didReceiveMemoryWarning

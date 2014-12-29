@@ -15,7 +15,7 @@
 {
     
 	int mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ALL, 0};
-	size_t miblen = 4;
+	u_int miblen = 4;
 	
 	size_t size;
 	int st = sysctl(mib, miblen, NULL, &size, NULL, 0);
@@ -42,13 +42,13 @@
 	if (st == 0){
 
 		if (size % sizeof(struct kinfo_proc) == 0){
-			int nprocess = size / sizeof(struct kinfo_proc);
+			size_t nprocess = size / sizeof(struct kinfo_proc);
             
 			if (nprocess){
                 
 				NSMutableArray * array = [[NSMutableArray alloc] init];
                 
-				for (int i = nprocess - 1; i >= 0; i--){
+				for (size_t i = nprocess - 1; i > 0; i--){
                     
 					NSString *processID = [[NSString alloc] initWithFormat:@"%d", process[i].kp_proc.p_pid];
 					NSString *processName = [[NSString alloc] initWithFormat:@"%s", process[i].kp_proc.p_comm];
